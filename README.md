@@ -20,3 +20,7 @@ python3 trabalho.py
 ### Autores
 
 [GustavoSaibro](https://github.com/GustavoSaibro)
+
+### Contribuidores
+
+[Alfredo](https://github.com/alfredogoeten)

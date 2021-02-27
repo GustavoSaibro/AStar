@@ -1,6 +1,6 @@
 from mover import *
 
-class Nodo():
+class Nodo(object):
     """[Classe de Nodos que irá criar os nodos do grafo]
        [Temos aqui a heuristica h o custo total c  a soma de tudo s e também a referencia para seus nodos filhos]
        
@@ -10,9 +10,9 @@ class Nodo():
        [pai]: Coloquei como pai padrão None, ou seja, o nodo inicial não tem nodo pai
     """
     
-    def __init__(self,estado, heuristica=8, custo=0, pai=None):
+    def __init__(self,estado, objetivo, heuristica=8, custo=0, pai=None):
         
-        self.objetivo = [1, 2, 3, 4, 5, 6, 7, 8, 0]
+        self.objetivo = objetivo
         
         #Estado do nodo
         self.estado = estado
@@ -30,7 +30,12 @@ class Nodo():
     
     def gerarFilhos(self):
         filho = []
-        filho = Mover.moverBranco(filho)
+        estado = self.estado        
+        mover = Mover()
+        print("aqui deu certo-------------------------------------------------------------------")
+        print(estado)
+        filho = mover.moverBranco()
+        
         self.estados.append(filho)
         """
         Loop para gerar nodos filhos. 
@@ -42,7 +47,8 @@ class Nodo():
         """
         for i in range(len(self.estados)):
             nodoFilho = Nodo(self.estados[i], self.gerarHeuristica(self.estados[i]), self.gerarCusto(self.custo),self)
-            self.filhos.append(nodoFilho)
+            self.filhos.append(nodoFilho)        
+
     
     def gerarHeuristica(self):
         
