@@ -19,5 +19,5 @@ python3 trabalho.py
 ```
 ### Autores
 
-@GustavoSaibro
+[@GustavoSaibro](https://github.com/GustavoSaibro)
 
