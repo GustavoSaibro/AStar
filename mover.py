@@ -1,5 +1,9 @@
-class Mover(object):   
-    def moverBranco(estado):
+class Mover:
+    def __init__(self,estado):
+        self.estado = estado  
+             
+    def moverBranco(self,estado):
+        estado = self.estado
         if(estado.index(0) == 0):
             estados = []
             estado1 = estado

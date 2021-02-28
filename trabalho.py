@@ -1,7 +1,8 @@
 from queue import PriorityQueue
 from nodo import *
+from heuristica import *
 
-class Busca(object):
+class Busca:
     
     """[Classe de busca com 3 buscas, A-Estrela, Busca por custo uniforme e A-Estrela simples]
         A-Estrela será representada por A*
@@ -11,10 +12,23 @@ class Busca(object):
         O parametro algoritmo determina o algoritmo a ser usado. Por padrão é usado o A*
     """
     
-    def __init__(self,algoritmo="A*"):
+    def __init__(self,estado,algoritmo="A*"):
         
         #Algoritmo a ser usado
         self.algoritmo = algoritmo
+        self.estado = estado
+    
+    def gerarHeuristica(estado,objetivo):
+                
+        heuristica = 0
+        for i in range(len(estado)):
+            if(estado[i] != objetivo[i]):
+                heuristica+=1        
+        return heuristica
+    
+    def gerarCusto(custo):
+        custo+=1        
+        return custo
         
     def astar(estado, objetivo = [1, 2, 3, 4, 5, 6, 7, 8, 0]):
         
@@ -28,47 +42,54 @@ class Busca(object):
         
         #Criando o nodo inicial que também serve como ponteiro pro nodo atual
         nodo = Nodo(estado, objetivo)
-
-        
+               
         #Colocando o nodo atual na fronteira  
-        fronteira.put((nodo.heuristica,nodo))
+        fronteira.put((nodo.f,nodo))
         
         if (nodo.estado == nodo.objetivo):
             caminho.append(nodo)
             return caminho       
          
         else:
-            #Removento da fronteira e adicionando aos visitados               
+            #Removendo da fronteira e adicionando aos visitados               
             visitados.add(fronteira.get()) 
             #Gerando os nodos filhos
-            nodo.gerarFilhos() 
+            nodo.estados = nodo.gerarEstadosFilhos(nodo.estado) 
                         
-            for i in nodo.filhos:
-                fronteira.put((nodo.filhos[i].f, nodo.filhos[i]))
+            for i in nodo.estados:
+                aux = nodo.estados[i]
+                heuristica = Heuristica(aux, objetivo)
+                filho = Nodo(aux,objetivo, heuristica.gerarHeuristica(aux, objetivo), heuristica.gerarCusto(aux.custo), nodo)
+                nodo.filhos.append(filho)            
+                fronteira.put((filho.f, nodo.filhos[i]))
                                 
             while(nodo.estado != nodo.objetivo):
                 
                 #Atualizando o nodo atual
-                nodo = fronteira.get()[1]                
+                nodo = fronteira.get()[1]             
                 #Gerando os filhos do nodo atual
-                nodo.gerarFilhos()                
+                nodo.estados = nodo.gerarEstadosFilhos(nodo.estado)                                
                 #Adicionando o nodo aos visitados
                 visitados.add(nodo)
-                                
-                for i in nodo.filhos:
-                    fronteira.put((nodo.filhos[i].f, nodo.filhos[i]))
+                
+                for i in nodo.estados:
+                    aux = nodo.estados[i]
+                    heuristica = Heuristica(aux, objetivo)
+                    filho = Nodo(aux,objetivo, heuristica.gerarHeuristica(aux, objetivo), heuristica.gerarCusto(aux.custo), nodo)
+                    nodo.filhos.append(filho)            
+                    fronteira.put((filho.f, nodo.filhos[i]))
             
             while(nodo.pai != None):
-                caminho.add(nodo.estado)
+                caminho.append(nodo.estado)
                 nodo = nodo.pai
                                
             return caminho
     
-    def iniciar(self,algoritmo="A*"):
+    # def iniciar(self,estado,algoritmo="A*"):
         
-        if(algoritmo =="A*"):
-            caminho = self.astar([1, 2, 3, 4, 5, 6, 7, 0, 8])
-            print(caminho)   
-                
-busca = Busca()
-busca.iniciar()   
+    #     if(algoritmo =="A*"):
+    #         caminho = self.astar(estado)
+    #         print(caminho)   
+  
+busca = Busca([1, 2, 3, 4, 5, 6, 7, 0, 8])    
+busca.astar([1, 2, 3, 4, 5, 6, 7, 8, 0])     
