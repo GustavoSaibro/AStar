@@ -1,6 +1,6 @@
 from mover import *
 
-class Nodo(object):
+class Nodo:
     """[Classe de Nodos que irá criar os nodos do grafo]
        [Temos aqui a heuristica h o custo total c  a soma de tudo s e também a referencia para seus nodos filhos]
        
@@ -26,40 +26,17 @@ class Nodo(object):
         self.estados = []
         self.filhos = []
         #F-value é o custo total, custo+heuristica
-        self.f= custo + heuristica
+        self.f = custo + heuristica
     
-    def gerarFilhos(self):
-        filho = []
-        estado = self.estado        
-        mover = Mover()
-        print("aqui deu certo-------------------------------------------------------------------")
-        print(estado)
-        filho = mover.moverBranco()
-        
-        self.estados.append(filho)
-        """
-        Loop para gerar nodos filhos. 
-        Cria-se nodos filhos passando como parametros:
-        [estado]: passa como novo estado o estado calculado anteriormente
-        [heuristica]: passa uma função que tem como entrada de parametro o mesmo estado passado como novo estado
-        [custo]: passa o custo do pai + 1
-        [pai]: como nodo pai, passa o proprio nodo que criou os filhos
-        """
-        for i in range(len(self.estados)):
-            nodoFilho = Nodo(self.estados[i], self.gerarHeuristica(self.estados[i]), self.gerarCusto(self.custo),self)
-            self.filhos.append(nodoFilho)        
+    def gerarEstadosFilhos(self,estado):
+        filho = []  
 
-    
-    def gerarHeuristica(self):
+        mover = Mover(estado)        
+        filho = mover.moverBranco(estado)    
+        estados = self.estados.append(filho)
         
-        heuristica = 0
-        for i in range(len(self.estado)):
-            if(self.estado[i] != self.objetivo[i]):
-                heuristica+=1        
-        return heuristica
+        return estados
     
-    def gerarCusto(custo):
-        custo+=1        
-        return custo
+
         
     
