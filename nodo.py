@@ -40,5 +40,11 @@ class Nodo:
     
     def custoF(self):
         return self.f
+    
+    def heuristica(self):
+        return self.heuristica
+    
+    def custoC(self):
+        return self.custo
         
     
