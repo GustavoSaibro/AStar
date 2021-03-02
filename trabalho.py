@@ -38,7 +38,12 @@ class Busca:
         # print(nodo.estados, "estados")
                
         #Colocando o nodo atual na fronteira  
-        fronteira.put((nodo.f,nodo)) 
+        fronteira.put((nodo.custoF(), nodo)) 
+        # print(nodo.custoF())
+        # nodo2 = Nodo([1, 2, 3, 4, 5, 6, 7, 8, 0], objetivo)
+        # print(nodo2.custoF())
+        # fronteira.put((nodo2.custoF(), nodo2))
+        print(fronteira.get())
         
         if (nodo.estado == nodo.objetivo):
             caminho.append(nodo)
@@ -52,12 +57,14 @@ class Busca:
             # print(nodo.estado, "estado")
             # print(nodo.estados, "estados")
             custo = nodo.custo
+            nodos = []
             
             for i in range(len(nodo.estados)):
                 # print(i)
                 aux = nodo.estados[i]
                 heuristica = Heuristica(aux, objetivo)
                 filho = Nodo(aux,objetivo, heuristica.gerarHeuristica(aux, objetivo), heuristica.gerarCusto(custo), nodo)
+                nodos.append(filho)
                 # print(filho.estado, "estado")
                 # print(filho.estados, "estados")
                 nodo.filhos.append(filho)        
