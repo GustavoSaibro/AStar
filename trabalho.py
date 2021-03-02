@@ -14,7 +14,17 @@ class Busca:
     
     # def __init__(self,estado,algoritmo="A*"):
         
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+    #     #Algoritmo a ser usado
+    #     self.algoritmo = algoritmo
+    #     self.estado = estado
+    
+    # def gerarHeuristica(estado,objetivo):
+=======
+>>>>>>> work
         #Algoritmo a ser usado
         self.algoritmo = algoritmo
         self.estado = estado
@@ -23,7 +33,11 @@ class Busca:
             print(caminho)  
     
     def gerarHeuristica(self, estado,objetivo):
+<<<<<<< HEAD
 
+=======
+>>>>>>> 89dc0152bcb8788b7844c683da60208bc7fcac11
+>>>>>>> work
                 
     #     heuristica = 0
     #     for i in range(len(estado)):
@@ -31,13 +45,27 @@ class Busca:
     #             heuristica+=1        
     #     return heuristica
     
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+    # def gerarCusto(custo):
+    #     custo+=1        
+    #     return custo
+        
+    def astar(self,estado, objetivo = [1, 2, 3, 4, 5, 6, 7, 8, 0]):
+=======
+>>>>>>> work
     def gerarCusto(self, custo):
         custo+=1        
         return custo
         
     def astar(self, estado, objetivo = [1, 2, 3, 4, 5, 6, 7, 8, 0]):
+<<<<<<< HEAD
 
+=======
+>>>>>>> 89dc0152bcb8788b7844c683da60208bc7fcac11
+>>>>>>> work
         
          #Caminho desejado
         caminho = [] 
