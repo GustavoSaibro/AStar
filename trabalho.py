@@ -12,33 +12,16 @@ class Busca:
         O parametro algoritmo determina o algoritmo a ser usado. Por padrão é usado o A*
     """
     
-    # def __init__(self,estado,algoritmo="A*"):
+    def __init__(self,estado,algoritmo="A*"):
         
 
         #Algoritmo a ser usado
         self.algoritmo = algoritmo
         self.estado = estado
-        if(algoritmo =='A*'):
-            caminho = self.astar(estado)
-            print(caminho)  
-    
-    def gerarHeuristica(self, estado,objetivo):
-
-                
-    #     heuristica = 0
-    #     for i in range(len(estado)):
-    #         if(estado[i] != objetivo[i]):
-    #             heuristica+=1        
-    #     return heuristica
     
 
-    def gerarCusto(self, custo):
-        custo+=1        
-        return custo
-        
     def astar(self, estado, objetivo = [1, 2, 3, 4, 5, 6, 7, 8, 0]):
 
-        
          #Caminho desejado
         caminho = [] 
         
