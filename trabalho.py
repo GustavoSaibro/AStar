@@ -12,12 +12,12 @@ class Busca:
         O parametro algoritmo determina o algoritmo a ser usado. Por padrão é usado o A*
     """
     
-    def __init__(self,estado,algoritmo="A*"):
+    # def __init__(self,estado,algoritmo="A*"):
         
 
-        #Algoritmo a ser usado
-        self.algoritmo = algoritmo
-        self.estado = estado
+    #     #Algoritmo a ser usado
+    #     self.algoritmo = algoritmo
+    #     self.estado = estado
     
 
     def astar(self, estado, objetivo = [1, 2, 3, 4, 5, 6, 7, 8, 0]):
@@ -77,7 +77,7 @@ class Busca:
                     heuristica = Heuristica(aux, objetivo)
                     filho = Nodo(aux,objetivo, heuristica.gerarHeuristica(aux, objetivo), heuristica.gerarCusto(aux.custo), nodo)
                     nodo.filhos.append(filho)            
-                    fronteira.put((filho.f, nodo.filhos[i]))
+                    fronteira.put((filho, nodo.filhos[i]))
             
             while(nodo.pai != None):
                 caminho.append(nodo.estado)

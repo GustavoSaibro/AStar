@@ -8,8 +8,8 @@ class Heuristica:
     def gerarHeuristica(self,estado,objetivo):
                 
         heuristica = 0
-        for i in range(len(self.estado)):
-            if(self.estado[i] != self.objetivo[i]):
+        for i in range(len(estado)):
+            if(estado[i] != objetivo[i]):
                 heuristica+=1        
         return heuristica
     
