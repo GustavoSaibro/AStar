@@ -17,8 +17,11 @@ class Busca:
         #Algoritmo a ser usado
         self.algoritmo = algoritmo
         self.estado = estado
+        if(algoritmo =='A*'):
+            caminho = self.astar(estado)
+            print(caminho)  
     
-    def gerarHeuristica(estado,objetivo):
+    def gerarHeuristica(self, estado,objetivo):
                 
         heuristica = 0
         for i in range(len(estado)):
@@ -26,11 +29,11 @@ class Busca:
                 heuristica+=1        
         return heuristica
     
-    def gerarCusto(custo):
+    def gerarCusto(self, custo):
         custo+=1        
         return custo
         
-    def astar(estado, objetivo = [1, 2, 3, 4, 5, 6, 7, 8, 0]):
+    def astar(self, estado, objetivo = [1, 2, 3, 4, 5, 6, 7, 8, 0]):
         
          #Caminho desejado
         caminho = []   
@@ -85,11 +88,11 @@ class Busca:
                                
             return caminho
     
-    # def iniciar(self,estado,algoritmo="A*"):
+     #def iniciar(self,estado,algoritmo='A*'):
         
-    #     if(algoritmo =="A*"):
-    #         caminho = self.astar(estado)
-    #         print(caminho)   
+         #if(algoritmo =='A*'):
+          # caminho = self.astar(estado)
+          # print(caminho)   
   
 busca = Busca([1, 2, 3, 4, 5, 6, 7, 0, 8])    
 busca.astar([1, 2, 3, 4, 5, 6, 7, 8, 0])     

@@ -5,7 +5,7 @@ class Heuristica:
         self.objetivo = objetivo
         
     
-    def gerarHeuristica(estado,objetivo):
+    def gerarHeuristica(self,estado,objetivo):
                 
         heuristica = 0
         for i in range(len(estado)):
@@ -13,7 +13,7 @@ class Heuristica:
                 heuristica+=1        
         return heuristica
     
-    def gerarCusto(custo):
+    def gerarCusto(self,custo):
         custo+=1        
         return custo
     
