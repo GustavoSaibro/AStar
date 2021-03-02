@@ -29,13 +29,14 @@ class Nodo:
         self.f = custo + heuristica
     
     def gerarEstadosFilhos(self,estado):
-        filho = []  
-
-        mover = Mover(estado)        
-        filho = mover.moverBranco(estado)    
-        estados = self.estados.append(filho)
+        filho = []       
+        # mover = Mover()        
+        filho = moverBranco(estado)
+        self.estados = filho
+        # print(self.estados,"estados do gerar filhos")  
+        # print(filho, "filho do gerar filho")
         
-        return estados
+        return self.estados
     
 
         

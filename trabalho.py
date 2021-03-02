@@ -12,29 +12,31 @@ class Busca:
         O parametro algoritmo determina o algoritmo a ser usado. Por padrão é usado o A*
     """
     
-    def __init__(self,estado,algoritmo="A*"):
+    # def __init__(self,estado,algoritmo="A*"):
         
-        #Algoritmo a ser usado
-        self.algoritmo = algoritmo
-        self.estado = estado
+    #     #Algoritmo a ser usado
+    #     self.algoritmo = algoritmo
+    #     self.estado = estado
     
-    def gerarHeuristica(estado,objetivo):
+    # def gerarHeuristica(estado,objetivo):
                 
-        heuristica = 0
-        for i in range(len(estado)):
-            if(estado[i] != objetivo[i]):
-                heuristica+=1        
-        return heuristica
+    #     heuristica = 0
+    #     for i in range(len(estado)):
+    #         if(estado[i] != objetivo[i]):
+    #             heuristica+=1        
+    #     return heuristica
     
-    def gerarCusto(custo):
-        custo+=1        
-        return custo
+    # def gerarCusto(custo):
+    #     custo+=1        
+    #     return custo
         
-    def astar(estado, objetivo = [1, 2, 3, 4, 5, 6, 7, 8, 0]):
+    def astar(self,estado, objetivo = [1, 2, 3, 4, 5, 6, 7, 8, 0]):
         
          #Caminho desejado
-        caminho = []   
-                
+        caminho = [] 
+        
+        # estado =  [1, 2, 3, 4, 5, 6, 7, 0, 8]       
+                        
         #Nodos visitados. Escolhi um set para guardar os nodos visitados pois evita repetição de elementos
         visitados = set()
         #Nodos da fronteira. Escolhi lista ordenada pois deixa os elementos na ordem certa para serem visitados
@@ -42,26 +44,34 @@ class Busca:
         
         #Criando o nodo inicial que também serve como ponteiro pro nodo atual
         nodo = Nodo(estado, objetivo)
+        # print(nodo.estado, "estado")
+        # print(nodo.estados, "estados")
                
         #Colocando o nodo atual na fronteira  
-        fronteira.put((nodo.f,nodo))
+        fronteira.put((nodo.f,nodo)) 
         
         if (nodo.estado == nodo.objetivo):
             caminho.append(nodo)
             return caminho       
          
-        else:
+        else:          
             #Removendo da fronteira e adicionando aos visitados               
             visitados.add(fronteira.get()) 
             #Gerando os nodos filhos
-            nodo.estados = nodo.gerarEstadosFilhos(nodo.estado) 
-                        
-            for i in nodo.estados:
+            nodo.estados = nodo.gerarEstadosFilhos(estado) 
+            # print(nodo.estado, "estado")
+            # print(nodo.estados, "estados")
+            custo = nodo.custo
+            
+            for i in range(len(nodo.estados)):
+                # print(i)
                 aux = nodo.estados[i]
                 heuristica = Heuristica(aux, objetivo)
-                filho = Nodo(aux,objetivo, heuristica.gerarHeuristica(aux, objetivo), heuristica.gerarCusto(aux.custo), nodo)
-                nodo.filhos.append(filho)            
-                fronteira.put((filho.f, nodo.filhos[i]))
+                filho = Nodo(aux,objetivo, heuristica.gerarHeuristica(aux, objetivo), heuristica.gerarCusto(custo), nodo)
+                # print(filho.estado, "estado")
+                # print(filho.estados, "estados")
+                nodo.filhos.append(filho)        
+                fronteira.put((filho.f, filho))
                                 
             while(nodo.estado != nodo.objetivo):
                 
@@ -91,5 +101,7 @@ class Busca:
     #         caminho = self.astar(estado)
     #         print(caminho)   
   
-busca = Busca([1, 2, 3, 4, 5, 6, 7, 0, 8])    
-busca.astar([1, 2, 3, 4, 5, 6, 7, 8, 0])     
+# busca = Busca([1, 2, 3, 4, 5, 6, 7, 0, 8])    
+# busca.astar([1, 2, 3, 4, 5, 6, 7, 8, 0])     
+busca = Busca()
+busca.astar([0, 2, 3, 4, 5, 6, 7, 1, 8])
