@@ -38,6 +38,7 @@ class Nodo:
         
         return self.estados
     
-
+    def custoF(self):
+        return self.f
         
     
