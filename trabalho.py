@@ -17,7 +17,10 @@ class Busca:
         #Caminho desejado
         caminho = [] 
         
-     
+        qtNodosVis = 0
+        qtNodosCri = 0
+        tamFront = 0
+        tamCamin = 0
                         
         #Nodos visitados. Escolhi um set para guardar os nodos visitados pois evita repetição de elementos
         visitados = set()
@@ -37,6 +40,10 @@ class Busca:
         
         if (nodo.estado == nodo.objetivo):
             caminho.append(nodo)
+            print("quantidade de nodos visitados: ", qtNodosVis)
+            print("quantidade de nodos criados: ", qtNodosCri)
+            print("tamanho da fronteira: ", tamFront)
+            print("tamanho do caminho: ", tamCamin)
             return caminho       
          
         else:          
@@ -56,6 +63,12 @@ class Busca:
 
                 nodo.filhos.append(filho)        
                 fronteira.put((filho.custoF(), filho))
+                
+                #Aumentando os parametros
+                qtNodosVis +=1
+                qtNodosCri +=1
+                tamFront +=1
+                tamCamin +=1
                                 
             while(nodo.estado != nodo.objetivo):
                 
@@ -72,17 +85,32 @@ class Busca:
                     filho = Nodo(aux,objetivo, heuristica.gerarHeuristica(aux, objetivo), heuristica.gerarCusto(aux.custo), nodo)
                     nodo.filhos.append(filho)            
                     fronteira.put((filho.custoF(), nodo.filhos[i]))
+                    
+                    #Aumentando os parametros
+                    qtNodosVis +=1
+                    qtNodosCri +=1
+                    tamFront +=1
+                    tamCamin +=1
             
             while(nodo.pai != None):
                 caminho.append(nodo.estado)
                 nodo = nodo.pai
-                               
+            
+            print("quantidade de nodos visitados: ", qtNodosVis)
+            print("quantidade de nodos criados: ", qtNodosCri)
+            print("tamanho da fronteira: ", tamFront)
+            print("tamanho do caminho: ", tamCamin)                   
             return caminho
     
     def astarSimple(self, estado, objetivo = [1, 2, 3, 4, 5, 6, 7, 8, 0]):
         
         #Caminho desejado
         caminho = [] 
+        
+        qtNodosVis = 0
+        qtNodosCri = 0
+        tamFront = 0
+        tamCamin = 0
         
         #Nodos visitados. Escolhi um set para guardar os nodos visitados pois evita repetição de elementos
         visitados = set()
@@ -100,6 +128,10 @@ class Busca:
         
         if (nodo.estado == nodo.objetivo):
             caminho.append(nodo)
+            print("quantidade de nodos visitados: ", qtNodosVis)
+            print("quantidade de nodos criados: ", qtNodosCri)
+            print("tamanho da fronteira: ", tamFront)
+            print("tamanho do caminho: ", tamCamin)
             return caminho       
          
         else:          
@@ -117,6 +149,12 @@ class Busca:
                 nodos.append(filho)
                 nodo.filhos.append(filho)        
                 fronteira.put((filho.heuristica(), filho))
+                
+                #Aumentando os parametros
+                qtNodosVis +=1
+                qtNodosCri +=1
+                tamFront +=1
+                tamCamin +=1
                                 
             while(nodo.estado != nodo.objetivo):
                 
@@ -133,11 +171,21 @@ class Busca:
                     filho = Nodo(aux,objetivo, heuristica.gerarHeuristica(aux, objetivo), heuristica.gerarCusto(aux.custo), nodo)
                     nodo.filhos.append(filho)            
                     fronteira.put((filho.heuristica(), nodo.filhos[i]))
-            
+                    
+                    #Aumentando os parametros
+                    qtNodosVis +=1
+                    qtNodosCri +=1
+                    tamFront +=1
+                    tamCamin +=1
+                                
             while(nodo.pai != None):
                 caminho.append(nodo.estado)
                 nodo = nodo.pai
-                               
+            
+            print("quantidade de nodos visitados: ", qtNodosVis)
+            print("quantidade de nodos criados: ", qtNodosCri)
+            print("tamanho da fronteira: ", tamFront)
+            print("tamanho do caminho: ", tamCamin)                   
             return caminho
         
     
@@ -145,6 +193,11 @@ class Busca:
         
          #Caminho desejado
         caminho = [] 
+        
+        qtNodosVis = 0
+        qtNodosCri = 0
+        tamFront = 0
+        tamCamin = 0
         
         #Nodos visitados. Escolhi um set para guardar os nodos visitados pois evita repetição de elementos
         visitados = set()
@@ -162,6 +215,10 @@ class Busca:
         
         if (nodo.estado == nodo.objetivo):
             caminho.append(nodo)
+            print("quantidade de nodos visitados: ", qtNodosVis)
+            print("quantidade de nodos criados: ", qtNodosCri)
+            print("tamanho da fronteira: ", tamFront)
+            print("tamanho do caminho: ", tamCamin)   
             return caminho       
          
         else:          
@@ -181,6 +238,12 @@ class Busca:
                 
                 nodo.filhos.append(filho)        
                 fronteira.put((filho.custoC(), filho))
+                
+                #Aumentando os parametros
+                qtNodosVis +=1
+                qtNodosCri +=1
+                tamFront +=1
+                tamCamin +=1
                                 
             while(nodo.estado != nodo.objetivo):
                 
@@ -197,11 +260,22 @@ class Busca:
                     filho = Nodo(aux,objetivo, heuristica.gerarHeuristica(aux, objetivo), heuristica.gerarCusto(aux.custo), nodo)
                     nodo.filhos.append(filho)            
                     fronteira.put((filho.custoC(), nodo.filhos[i]))
+                    
+                    
+                    #Aumentando os parametros
+                    qtNodosVis +=1
+                    qtNodosCri +=1
+                    tamFront +=1
+                    tamCamin +=1
             
             while(nodo.pai != None):
                 caminho.append(nodo.estado)
                 nodo = nodo.pai
-                               
+            
+            print("quantidade de nodos visitados: ", qtNodosVis)
+            print("quantidade de nodos criados: ", qtNodosCri)
+            print("tamanho da fronteira: ", tamFront)
+            print("tamanho do caminho: ", tamCamin)                     
             return caminho
   
  
